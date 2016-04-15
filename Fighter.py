@@ -14,7 +14,40 @@ strbonus = 8
 profbonus = 5
 
 
-def flametongue2hands(numberattacks,GWM):
+def flametongue1hand(numberattacks):
+    allattackslashingtotal = 0
+    allattackfiretotal = 0
+        
+    for i in range(1,numberattacks+1):
+        print("\nAttack Number %d:" %i)        
+        
+        """slashing damage"""        
+        slashing = randint(1,8)
+        print("Slashing Die = %d" %slashing)
+        slashingbonus = strbonus   
+        print("Slashing Bonus = %d" %slashingbonus)
+        slashing += slashingbonus
+        
+        """fire damage"""
+        firetotal = 0
+        for i in range (1,3):
+            firedie = randint(1,6)
+            if firedie <= 2:
+                print("Fire Die number %d rolled a %d, reroll." %(i,firedie))
+                firedie = randint(1,6)
+            print("Fire Die number %d = %d" % (i,firedie))
+            firetotal += firedie
+        
+        allattackslashingtotal += slashing
+        allattackfiretotal += firetotal
+        
+        
+        print("%d slashing damage \n%d fire damage" % (slashing,firetotal))
+    
+    print("""\nTotal: \n%d slashing damage \n%d fire damage""" % (allattackslashingtotal,allattackfiretotal))
+    
+
+def flametongue2hand(numberattacks,GWM):
     allattackslashingtotal = 0
     allattackfiretotal = 0
         
@@ -27,7 +60,7 @@ def flametongue2hands(numberattacks,GWM):
             print("""Slashing die rolled a %d, reroll.""" % slashing)
             slashing = randint(1,10)
         print("Slashing Die = %d" %slashing)
-        slashingbonus = (ceil(1.5*strbonus)+profbonus)   
+        slashingbonus = ceil(1.5*strbonus)   
         print("Slashing Bonus = %d" %slashingbonus)
         slashing += slashingbonus
         "Great Weapons Master Feat bonus damage"
@@ -70,7 +103,7 @@ def vengeance(numberattacks,GWM):
                 slashdie = randint(1,6)
             print("Slashing Die number %d = %d" %(i,slashdie))
             slashtotal += slashdie
-        slashingbonus = (ceil(1.5*strbonus)+profbonus+1)   
+        slashingbonus = (ceil(1.5*strbonus)+1)   
         print("Slashing Bonus = %d" %slashingbonus)
         slashtotal += slashingbonus
         allattackslashingtotal += slashtotal
@@ -84,5 +117,8 @@ def vengeance(numberattacks,GWM):
 
 
 
-vengeance(3,GWM=True)
-#flametongue2hands(3,GWM=True)
+#vengeance(3,GWM=True)
+
+flametongue1hand(3)
+
+#flametongue2hand(3,GWM=True)
